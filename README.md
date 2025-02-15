@@ -1,2 +1,2 @@
 # AS-TaskManager
-CLI app task manager
+a CLI evironment Project/Task Manager
