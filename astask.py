@@ -6,10 +6,8 @@ from astask_module import *
 # main program
 
 
-
 # Version : AS-TaskManager(v2025.02.16 Unstable)
 # © 2025 Abyasa Saifaji <aby110605@gmail.com>
-
 
 
 # to make sure only get 2nd arg and after that
@@ -24,9 +22,13 @@ if args:
         help()
     elif func == 'help':
         help()
+    elif func == 'add':
+        add(args)
     elif func == 'rm':
         if (args[1]) == "-db":
             deldb(args)
+        else:
+            delt(args)
     elif func == 'create':
         createdb(args)
     else:

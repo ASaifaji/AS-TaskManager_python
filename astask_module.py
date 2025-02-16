@@ -41,6 +41,57 @@ def createdb(args):
     else:
         print("dbname can't start with \"-\"")
 
+def add(args):
+    dbname =args[1]
+    db = load(dbname)
+    if db != None:
+        task_name = ' '.join(args[2:])
+        if db["task"] == []:
+            db["task"].append({"id":1,"task_name":f"{task_name}","status":"to-do"})
+        else:
+            db["task"].append({"id":len(db["task"])+1,"task_name":f"{task_name}","status":"to-do"})
+        
+        save(dbname, db)
+
+def load(dbname):
+    try :
+        with open(f"{dbname}.json") as f:
+            db = json.load(f)
+            return db
+    except FileNotFoundError:
+        print(f"{dbname} doesn't exist in directory")
+
+def save(dbname, db):
+    try :
+        with open(f"{dbname}.json", "w") as f:
+            json.dump(db, f, indent=4)
+    except FileNotFoundError:
+        print(f"can't save, {dbname} doesn't exist in directory")
+
+def delt(args):
+    task_name = ' '.join(args[2:])
+    dbname =args[1]
+    db = load(dbname)
+    
+    for x in db["task"]:
+        if x["task_name"] == task_name:
+            index = x["id"]-1
+            break
+    
+    for x in db["task"]:
+        if x["id"] >= index+2:
+            x["id"] -= 1
+    
+    if index == 0:
+        db["task"] = db["task"][1:]
+    elif index == len(db["task"])-1:
+        db["task"] = db["task"][:-1]
+    else:
+        db["task"] = db["task"][:index] + db["task"][index+1:]
+    
+    save(dbname, db)
+    
+
 def deldb(args):
     if len(args) == 2:
         path = str(input("db name : ")) + ".json"
