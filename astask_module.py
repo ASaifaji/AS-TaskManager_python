@@ -27,15 +27,19 @@ def welcome_ver():
     print("\n")
 
 def createdb(args):
+    
     db = {"task":[]}
-    print("\n")
+    
     if len(args) == 1:
-        # I might restrict naming later so it dont start with -, to avoid mistaking flag and file in other args
         dbname = str(input("New Database Name: "))
     else:
         dbname = args[1]
-    with open(f"{dbname}.json", "w") as f:
-        json.dump(db, f, indent=4)
+
+    if dbname[0] != "-":
+        with open(f"{dbname}.json", "w") as f:
+            json.dump(db, f, indent=4)
+    else:
+        print("dbname can't start with \"-\"")
 
 def deldb(args):
     if len(args) == 2:
