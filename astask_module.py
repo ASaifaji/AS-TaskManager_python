@@ -22,9 +22,14 @@ def welcome_ver():
     print("\n")
     print("Welcome to AS-TaskManager.")
     print("Version : AS-TaskManager(v2025.02.16 Unstable)")
-    print("\n")
+    print()
+    print("ASTask  Copyright (C) 2025  Abyasa Saifaji")
+    print("This program comes with ABSOLUTELY NO WARRANTY.")
+    print("This is free software, and you are welcome to redistribute it")
+    print("under certain conditions.")
+    print("")
     print("Type \"python astask.py -h\" or \"python astask.py help\" for help")
-    print("\n")
+    print("")
 
 def createdb(args):
     
